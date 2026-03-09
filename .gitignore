@@ -1,0 +1,15 @@
+# ModelSim temporary & project files
+work/
+transcript
+vsim.wlf
+sim/
+*.mpf
+*.vr.mti
+*.vstf
+*.exe
+*.wlf
+
+# VS Code / OS files
+.vscode/
+*.DS_Store
+*.swp
