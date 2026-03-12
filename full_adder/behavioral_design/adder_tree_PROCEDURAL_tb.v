@@ -8,7 +8,7 @@ module adder_tree_tb ();
     wire [9:0] sum;
 
     // instantiate DUT
-    adder_tree TEST (git
+    adder_tree TEST (
         .a(a),
         .b(b),
         .c(c),
