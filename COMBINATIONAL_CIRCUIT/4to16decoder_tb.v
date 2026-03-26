@@ -27,7 +27,7 @@ module decoder4to16_tb ();
         $monitor("a = %b enable = %b b = %b", a, enable, b);
     end
 
-    // generate stimuls
+    // generate stimulus
     initial begin
            enable = 0; 
            a = 0;
