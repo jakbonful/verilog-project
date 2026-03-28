@@ -13,7 +13,7 @@ module nbit_adder_tb ();
         .sum(sum)
     );
 
-    // monitor and generate randome stimulus
+    // monitor and generate random stimulus
     initial begin
         $monitor("a = %d, b = %d, sum = %d",
                     a, b, sum);
