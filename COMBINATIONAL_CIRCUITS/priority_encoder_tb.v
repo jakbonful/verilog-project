@@ -16,7 +16,7 @@ module  pri_enc_4to2_tb ();
     //monitor values
     initial begin
         $display("4 to 2 Priority Encoder");
-        $monitor("x = %b y = %b v = %b", x, y, v);
+        $monitor("x = %b y = %d v = %b", x, y, v);
     end
 
     //generate random test
