@@ -13,3 +13,26 @@ sim/
 .vscode/
 *.DS_Store
 *.swp
+
+
+# Vivado build files
+.Xil/
+*.jou
+*.log
+*.str
+
+# Generated directories
+*.cache/
+*.hw/
+*.runs/
+*.sim/
+*.gen/
+*.ip_user_files/
+
+# IP / block design generated stuff
+*.srcs/sources_1/ip/
+*.srcs/sources_1/bd/*/hw_handoff/
+
+# Temp files
+*.tmp
+*.backup
