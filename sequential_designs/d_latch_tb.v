@@ -1,45 +1,44 @@
 `timescale 1us/1ns
+
 module d_latch_tb ();
-    
-//testbench for d_latch
-    reg d;
-    reg enable;
 
-    wire q;
-    wire q_not;
+reg d;
+reg enable;
+reg reset;
 
-//instantiate the DUT
-    d_latch DLatch (
+wire q;
+wire q_not;
+
+// Instantiate DUT
+d_latch DLatch (
     .d(d),
     .enable(enable),
+    .reset(reset),
     .q(q),
     .q_not(q_not)
-    );
+);
 
-//monitor values
+// Monitor
 initial begin
-    $display("D Lathch");
-    $monitor("d = %b, enable = %b, q = %b, q_not = %b", d, enable, q, q_not);
-end
-  
-//generate stimulus
-initial begin
-    enable = 0;
-    #1; d = 0;
-    #1; d = 1;
-    #1.5; enable = 1;
-    #0.2; d = 0;
-    #0.3; d = 1;
-    #1; enable = 0; d = 0;
-    #1; enable = 1; d = 1;
-    #2; d = 0;
-    #1; enable = 0;
-    #1; d = 1;
+    $display("D Latch");
+    $monitor("d=%b enable=%b reset=%b q=%b q_not=%b",
+              d, enable, reset, q, q_not);
 end
 
-//stop simulator 
-    initial begin
-        #20 $stop;
+// Stimulus
+initial begin
+    d = 0; enable = 0; reset = 1;
+    #1;
+
+    repeat(20) begin
+        {d, enable, reset} = $random;
+        #1;
     end
+end
+
+// Stop simulation
+initial begin
+    #50 $stop;
+end
 
 endmodule
