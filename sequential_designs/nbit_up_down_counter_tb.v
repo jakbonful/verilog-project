@@ -8,6 +8,8 @@ module nbit_counter_tb ();
         reg enable;
         reg reset_n;
         reg control;
+        reg load_en;
+        reg  [N-1:0] load;
         wire [N-1:0] counter;
 
     // DUT
@@ -16,7 +18,9 @@ module nbit_counter_tb ();
             .reset_n(reset_n),
             .enable(enable),
             .control_signal(control),
-            .counter(counter)
+            .counter(counter),
+            .load(load),
+            .load_en(load_en)
         );
 
     // clock signals
@@ -31,24 +35,37 @@ module nbit_counter_tb ();
 
     //  stimulus
         initial begin
+            #1;
             reset_n = 0;
             enable  = 0;
-            control = 1'b1;  // start with up
-            #1;
+            load_en = 0;
+            control = 0;
+            load    = 0;
 
-            // Release reset and enable counting
+            repeat (2) @(posedge clk);
+
+            // Release reset
             reset_n = 1;
-            enable  = 1;
 
-            // Count up from 0 → 15
-            control = 1'b1;           // counting up
-            repeat (16) @(posedge clk); // 16 cycles (0..15)
+            // Load value
+            load_en = 1;
+            load = 4'b1000;
+            @(posedge clk);
 
-            // Count down from 15 → 0
-            control = 1'b0;           // counting down
-            repeat (16) @(posedge clk); // 
+            load_en = 0;
 
+            // Enable counting
+            enable = 1;
+
+            // Count up
+            control = 1;
+            repeat (16) @(posedge clk);
+
+            // Count down
+            control = 0;
+            repeat (16) @(posedge clk);
         end
+       
     
     //stop 
         initial begin
