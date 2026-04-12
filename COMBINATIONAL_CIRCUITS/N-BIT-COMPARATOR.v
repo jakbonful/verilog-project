@@ -9,23 +9,19 @@ module N_BIT_COMPARATOR
 );
 
     //comparator computation
-    always @(*) begin
-        if (a == b) begin
-            equal = 1;
-            greater = 0;
-            lesser = 0;
-        end 
+    function automatic [2:0] compare (input [N-1:0] a, input [N-1:0] b);
+        begin
+            compare = {
+                (a > b), // greater than
+                (a == b), // equal to
+                (a < b)  // lesser than
+            };
+        end
         
-        else if (a > b) begin
-            equal = 0;
-            greater = 1;
-            lesser = 0;
-        end
+    endfunction
 
-        else begin 
-            equal = 0;
-            greater = 0;
-            lesser = 1;
+    // RTL COMP
+        always @(*) begin
+            {greater, equal, lesser} = compare(a,b);
         end
-    end
 endmodule
