@@ -19,7 +19,7 @@ module fibonacci ();
     initial begin
         #1; $display($time, " fibonacci(5) = %d", fibonacci(5));
         #1; $display($time, " fibonacci(9) = %d", fibonacci(9));
-        #1; $display($time, " fibonacci(80) = %d", fibonacci(7));
+        #1; $display($time, " fibonacci(7) = %d", fibonacci(7));
         #1; $display($time, " fibonacci(6) = %d", fibonacci(6));
         #1; $display($time, " fibonacci(10) = %d", fibonacci(10));
     end
